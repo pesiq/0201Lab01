@@ -6,7 +6,7 @@ tests(
 utilities (2/2)
     sorters(
         shellsort[done]
-        quicksort[]
-        mergesort[]
+        quicksort[done]
+        mergesort[done]
     )
 )
