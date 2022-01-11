@@ -14,7 +14,7 @@ public:
     virtual T getFirst() = 0;
     virtual T getLast() = 0;
     virtual T get(int index) = 0;
-    virtual sequence<T> &getSubsequence(unsigned int start, unsigned int end) = 0;
+    virtual sequence<T> *getSubsequence(int start, int end) = 0;
     virtual int length() = 0;
     virtual void set(T item, int index) = 0;
     virtual void append(T item) = 0;

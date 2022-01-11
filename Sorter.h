@@ -28,30 +28,80 @@ sequence<T>* Quicksort(sequence<T> input, bool (*cmp)(T a, T b)){
 }
 
 template<typename T>
-sequence<T> *merge(sequence<T> *input, bool (*cmp)(T a, T b), unsigned int left, unsigned int middle, unsigned int right){
+void merge(sequence<T> *input, bool (*cmp)(T a, T b), int left, int middle, int right){
+
+    int sizeLeft = middle - left + 1; //size of left subarray
+    int sizeRight = right - middle; //size of right subarray
+
+    auto *subL = input->getSubsequence(left, left+sizeLeft);
+    auto *subR = input->getSubsequence(middle+1, middle+sizeRight + 1);
+
+    //iterators
+    int i = 0;
+    int j = 0;
+    unsigned int k = left;
+
+    //merge sub arrays to real one
+    while(i<sizeLeft && j < sizeRight){
+        if(!cmp(subL->get(i), subR->get(j))){
+            input->set(subL->get(i), k);
+            i++;
+        } else {
+            input->set(subR->get(j), k);
+            j++;
+        }
+        k++;
+    }
+
+    //account for extras in subarrays
+
+    while (i < sizeLeft){
+        input->set(subL->get(i), k);
+        i++;
+        k++;
+    }
+
+    while (j < sizeRight){
+        input->set(subR->get(j), k);
+        j++;
+        k++;
+    }
+
+
 
 }
 
 template<typename T>
-sequence<T>* Mergesort(sequence<T> input, bool (*cmp)(T a, T b), unsigned int left, unsigned int right){
+void Mergesort(sequence<T> *input, bool (*cmp)(T a, T b), int left = 0, int right = 0, int rec = 0){
+    if(rec == 0){
+        left = 0;
+        right = input->length()-1;
+    }
+    rec++;
+    //auto *array = input->getSubsequence();
+    int middle;
+    if(left < right){
+        middle = left+(right-left)/2;
+        Mergesort(input, cmp, left, middle, rec);
+        Mergesort(input, cmp, middle + 1, right, rec);
+        merge(input, cmp, left, middle, right);
+    }
 
 }
 
 
 template<typename T>
-sequence<T>* Shellsort(sequence<T> *array, bool (*cmp)(T a, T b)){
-
-    for (int gap = array->length() / 2; gap > 0; gap /=2){
-        for(int i = gap; i < array->length(); i++){
-            T temp = array->get(i);
+void Shellsort(sequence<T> *input, bool (*cmp)(T a, T b)){
+    for (int gap = input->length() / 2; gap > 0; gap /=2){
+        for(int i = gap; i < input->length(); i++){
+            T temp = input->get(i);
             int j;
-            for(j = i; j >= gap && cmp(array->get(j - gap), temp); j -= gap){
-                array->set(array->get(j-gap), j);
+            for(j = i; j >= gap && cmp(input->get(j - gap), temp); j -= gap){
+                input->set(input->get(j - gap), j);
             }
-            array->set(temp,j) ;
+            input->set(temp, j) ;
         }
     }
-    return array;
 }
 
 

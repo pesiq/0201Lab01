@@ -72,13 +72,13 @@ public:
         list.set(val, index);
     }
 
-    listSequence<T>& getSubsequence(int start, int end){
-        listSequence<T> newlist = list.getSublist(start, end);
+    listSequence<T> *getSubsequence(int start, int end){
+        linkedList<T> newlist = list.getSublist(start, end);
         auto *newseq = new listSequence<T>();
-        for(int i = 0; i < newseq->length(); i++){
+        for(int i = 0; i < newlist.length(); i++){
             newseq->append(newlist.get(i));
         }
-        return *newseq;
+        return newseq;
     }
 
     void concatenate(sequence<T> *li){

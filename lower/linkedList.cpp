@@ -116,7 +116,7 @@ void linkedList<T>::insertAt(T val, int index) {
 
 template<class T>
 linkedList<T>& linkedList<T>::getSublist(size_t start, size_t end) {
-    size_t resultSize = end - start + 1;
+    size_t resultSize = end == start ? 1 : end - start;
     T *array = new T[resultSize];
     struct item *ptr = first;
     for (int i = 0; i < start; i++){
