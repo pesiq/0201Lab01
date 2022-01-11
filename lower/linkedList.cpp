@@ -131,7 +131,7 @@ linkedList<T>& linkedList<T>::getSublist(size_t start, size_t end) {
 }
 
 template<class T>
-T &linkedList<T>::get(int index) {
+T &linkedList<T>::get(int index) const {
     if(index > size || index < 0){
         throw indexOutOfRange();
     }
@@ -160,7 +160,7 @@ T linkedList<T>::getLast() {
 }
 
 template<class T>
-int linkedList<T>::length(){
+int linkedList<T>::length() const {
     return size;
 }
 

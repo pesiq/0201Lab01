@@ -20,7 +20,7 @@ public:
     }
 
     listSequence(T* arr, int amount){
-        list = listSequence(arr, amount);
+        list = linkedList<T>(arr, amount);
     }
 
     listSequence(linkedList<T> const &arr){
@@ -69,7 +69,7 @@ public:
     }
 
     void set(T val, int index){
-
+        list.set(val, index);
     }
 
     listSequence<T>& getSubsequence(int start, int end){

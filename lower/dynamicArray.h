@@ -46,6 +46,9 @@ public:
     }
 
     dynamicArray<T>& operator= (const dynamicArray<T>& array){
+        if (this == &array)
+            return *this;
+
         bufferSize = array.bufferSize;
         items = new T[bufferSize];
         size = array.size;

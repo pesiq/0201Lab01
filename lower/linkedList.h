@@ -29,9 +29,9 @@ public:
     //decomposition
     T getFirst(); //get first element
     T getLast(); //get last element
-    T &get(int index); //get element at index
+    T &get(int index) const ; //get element at index
     linkedList<T>& getSublist(size_t start, size_t end); //create linkedList of elements with index start to the element with index end
-    int length(); //get size of linkedList
+    int length() const; //get size of linkedList
 
     //operations
     void deleteItem(int index);
@@ -42,10 +42,15 @@ public:
     void concatenate(linkedList<T> list); //concatenate 2 lists
 
     linkedList<T>& operator=(const linkedList<T>& list){
-        deleteList();
-        first = list.first;
-        last = list.last;
-        size= list.size;
+        if(this == &list)
+            return *this;
+        this->deleteList();
+        this->size=0;
+        this->first = nullptr;
+        this->last = nullptr;
+        for(int i = 0; i < list.length(); i++){
+            this->append(list.get(i));
+        }
         return *this;
     }
 
