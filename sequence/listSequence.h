@@ -74,7 +74,7 @@ public:
 
     listSequence<T>& getSubsequence(int start, int end){
         listSequence<T> newlist = list.getSublist(start, end);
-        listSequence<T> *newseq = new listSequence<T>();
+        auto *newseq = new listSequence<T>();
         for(int i = 0; i < newseq->length(); i++){
             newseq->append(newlist.get(i));
         }
@@ -91,7 +91,7 @@ public:
         return list.get(i);
     }
 
-    listSequence<T> &operator= (listSequence<T> &list1){
+    listSequence<T> &operator= (listSequence<T> const &list1){
         list = list1.list;
         return *this;
     }

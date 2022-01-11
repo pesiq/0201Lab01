@@ -84,12 +84,12 @@ public:
         }
     }
 
-    sequence<T>* getSubsequence(int start, int end){
-        arraySequence<T> *result = new arraySequence<T>(end - start + 1);
+    sequence<T> &getSubsequence(int start, int end){
+        auto *result = new arraySequence<T>(end - start + 1);
         for(int i = start, j = 0; i < end; i++, j++){
             result->set(j, array.get(i));
         }
-        return result;
+        return *result;
     }
 
     T& operator[] (int index){

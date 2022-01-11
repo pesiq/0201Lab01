@@ -1,0 +1,12 @@
+mergesort done(main [] recursive part [])
+qucksort (main [] recursive part[])
+shellsort (main[done])
+menu (add prompter)
+tests(
+utilities (2/2)
+    sorters(
+        shellsort[done]
+        quicksort[]
+        mergesort[]
+    )
+)

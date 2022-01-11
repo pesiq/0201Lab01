@@ -8,13 +8,32 @@
 #include "sequence/sequence.h"
 
 template<typename T>
-sequence<T>* Quicksort(sequence<T> input, bool (*cmp)(T a, T b)){
+void swap(T &a, T &b){
+    T temp = a;
+    a = b;
+    b = temp;
+}
+
+//cmp is true when a > b
+
+template<typename T>
+sequence<T> *partition(){
 
 }
 
 
 template<typename T>
-sequence<T>* Mergesort(sequence<T> input, bool (*cmp)(T a, T b)){
+sequence<T>* Quicksort(sequence<T> input, bool (*cmp)(T a, T b)){
+
+}
+
+template<typename T>
+sequence<T> *merge(sequence<T> *input, bool (*cmp)(T a, T b), unsigned int left, unsigned int middle, unsigned int right){
+
+}
+
+template<typename T>
+sequence<T>* Mergesort(sequence<T> input, bool (*cmp)(T a, T b), unsigned int left, unsigned int right){
 
 }
 
