@@ -7,23 +7,48 @@
 
 #include "sequence/sequence.h"
 
-template<typename T>
-void swap(T &a, T &b){
-    T temp = a;
-    a = b;
-    b = temp;
-}
-
 //cmp is true when a > b
 
 template<typename T>
-sequence<T> *partition(){
+void Quicksort(sequence<T> *input, bool (*cmp)(T a, T b), int left = 0, int right = 0, int rec = 0){
+    if(rec == 0){
+        left = 0;
+        right = input->length()-1;
+    }
+    rec++;
 
-}
+    int i = left;
+    int j = right;
+    //set pivot in the centre of partition
+    T pivot = input->get((i + j) / 2);
 
+    //find elements in wrong partitions and swap
+    while (i <= j){
+        while(cmp(pivot, input->get(i))){
+            i++;
+        }
+        while(cmp(input->get(j), pivot)){
+            j--;
+        }
 
-template<typename T>
-sequence<T>* Quicksort(sequence<T> input, bool (*cmp)(T a, T b)){
+        //if found swap elements
+        if(i <= j) {
+            T temp = input->get(i);
+            input->set(input->get(j), i);
+            input->set(temp, j);
+            i++;
+            j--;
+        }
+    }
+    //print(*input);
+    //recurse
+    if(j > left){
+        Quicksort(input, cmp, left, j, rec);
+    }
+    if(i < right){
+        Quicksort(input, cmp, i, right, rec);
+
+    }
 
 }
 
@@ -66,7 +91,6 @@ void merge(sequence<T> *input, bool (*cmp)(T a, T b), int left, int middle, int 
         j++;
         k++;
     }
-
 
 
 }

@@ -66,9 +66,28 @@ void testMergesort(int size){
 }
 
 
+void testQuicksort(int size){
+    std::cout << "quicksort array" << std::endl;
+    auto seq1 = generateRandomArraySequenceInt<int>(size);
+    printSequence(*seq1);
+    Quicksort(seq1, &compareInt);
+    printSequence(*seq1);
+    testSorting(*seq1);
+
+
+    std::cout << "quicksort list" << std::endl;
+    auto seq2 = generateRandomListSequenceInt<int>(size);
+    printSequence(*seq2);
+    Quicksort(seq2, &compareInt);
+    printSequence(*seq2);
+    testSorting(*seq2);
+}
+
+
 int main(){
-    int size = 21;
+    int size = 20;
     testUtilsGen();
     testShellsort(size);
     testMergesort(size);
+    testQuicksort(size);
 }
